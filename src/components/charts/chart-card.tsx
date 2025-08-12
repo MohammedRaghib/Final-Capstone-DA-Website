@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useState, useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import {
   Bar,
   BarChart,
@@ -104,7 +104,7 @@ export default function ChartCard({
   dataKeys,
   indexKey,
 }: ChartCardProps) {
-  const [state, formAction] = useFormState(analyzeChartDataAction, initialState);
+  const [state, formAction] = useActionState(analyzeChartDataAction, initialState);
   const [activeIndex, setActiveIndex] = useState(0);
 
   const onPieEnter = (_: any, index: number) => {
