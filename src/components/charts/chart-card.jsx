@@ -38,15 +38,6 @@ import {
 } from '@/components/ui/chart';
 import { analyzeChartDataAction } from '@/app/dashboard/_actions';
 
-interface ChartCardProps {
-  title: string;
-  description: string;
-  chartType: 'line' | 'bar' | 'pie' | 'donut' | 'stacked-bar';
-  chartData: any[];
-  chartConfig?: ChartConfig;
-  dataKeys: string[];
-  indexKey: string;
-}
 
 const initialState = {
   insights: [],
@@ -62,7 +53,7 @@ function SubmitButton() {
   );
 }
 
-const renderActiveShape = (props: any) => {
+const renderActiveShape = (props) => {
   const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill, payload } = props;
   
   return (
@@ -103,11 +94,11 @@ export default function ChartCard({
   chartConfig,
   dataKeys,
   indexKey,
-}: ChartCardProps) {
+}) {
   const [state, formAction] = useActionState(analyzeChartDataAction, initialState);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const onPieEnter = (_: any, index: number) => {
+  const onPieEnter = (_, index) => {
     setActiveIndex(index);
   };
 
