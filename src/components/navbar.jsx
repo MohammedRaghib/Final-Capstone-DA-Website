@@ -2,11 +2,13 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { BarChart3, PanelLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import logo from '../app/logo.png'
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -22,7 +24,13 @@ export default function Navbar() {
       <div className="container flex h-14 max-w-screen-2xl items-center">
         <div className="mr-4 hidden items-center md:flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <BarChart3 className="h-6 w-6 text-primary" />
+            <Image
+              className="" 
+              src={logo}
+              alt="Logo"
+              width={24}
+              height={24}
+            />
             <span className="font-bold font-headline sm:inline-block">
               Market Pulse
             </span>
@@ -61,7 +69,7 @@ export default function Navbar() {
               >
                 <BarChart3 className="h-6 w-6 text-primary" />
                 <span className="font-bold font-headline">
-                    Data Insights
+                  Data Insights
                 </span>
               </Link>
               {routes.map((route) => (
@@ -80,7 +88,7 @@ export default function Navbar() {
           </SheetContent>
         </Sheet>
         <div className="flex w-full items-center justify-end gap-4 md:ml-auto md:gap-2 lg:gap-4">
-            {/* You can add user profile/settings button here later */}
+          {/* You can add user profile/settings button here later */}
         </div>
       </div>
     </header>

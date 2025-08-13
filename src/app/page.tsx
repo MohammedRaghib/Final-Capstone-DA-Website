@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { BarChart, PieChart, Search, TrendingUp } from 'lucide-react';
+import data_visualization from './data visualisation.png';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -34,7 +35,7 @@ export default function Home() {
               </div>
             </div>
             <Image
-              src="/images/data-visualization.png"
+              src={data_visualization}
               width="600"
               height="400"
               alt="Data Visualization Example"
