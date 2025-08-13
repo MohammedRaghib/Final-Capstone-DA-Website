@@ -1,0 +1,378 @@
+{
+  "lowestAvgPriceByBrandData": [
+    {
+      "brand": "rashnik",
+      "avg_price": 1445.0
+    },
+    {
+      "brand": "em",
+      "avg_price": 3453.0
+    },
+    {
+      "brand": "ailyons",
+      "avg_price": 7899.0
+    },
+    {
+      "brand": "mika",
+      "avg_price": 8495.0
+    },
+    {
+      "brand": "nunix",
+      "avg_price": 9060.25
+    },
+    {
+      "brand": "ramtons",
+      "avg_price": 18935.85714285714
+    },
+    {
+      "brand": "maxmo",
+      "avg_price": 20331.666666666668
+    },
+    {
+      "brand": "haier",
+      "avg_price": 21249.0
+    },
+    {
+      "brand": "von",
+      "avg_price": 22191.0
+    },
+    {
+      "brand": "smart",
+      "avg_price": 23783.666666666668
+    },
+    {
+      "brand": "vision",
+      "avg_price": 23863.5
+    },
+    {
+      "brand": "vitron",
+      "avg_price": 27500.0
+    },
+    {
+      "brand": "hisense",
+      "avg_price": 27774.5
+    },
+    {
+      "brand": "roch",
+      "avg_price": 29545.0
+    },
+    {
+      "brand": "midea",
+      "avg_price": 32195.0
+    },
+    {
+      "brand": "ecomax",
+      "avg_price": 34500.0
+    }
+  ],
+  "overallAvgDiscountData": [
+    {
+      "label": "Average Discount",
+      "value": 27.1,
+      "fill": "var(--color-chart-1)"
+    },
+    {
+      "label": "Remaining Value",
+      "value": 72.9,
+      "fill": "var(--color-chart-2)"
+    }
+  ],
+  "highestAvgDiscountByBrandData": [
+    {
+      "brand": "ailyons",
+      "avg_discount": 46.0
+    },
+    {
+      "brand": "em",
+      "avg_discount": 40.333333333333336
+    },
+    {
+      "brand": "von",
+      "avg_discount": 40.142857142857146
+    },
+    {
+      "brand": "hisense",
+      "avg_discount": 33.333333333333336
+    },
+    {
+      "brand": "midea",
+      "avg_discount": 31.0
+    },
+    {
+      "brand": "mika",
+      "avg_discount": 25.0
+    },
+    {
+      "brand": "nunix",
+      "avg_discount": 25.0
+    },
+    {
+      "brand": "ramtons",
+      "avg_discount": 24.833333333333332
+    },
+    {
+      "brand": "smart",
+      "avg_discount": 23.333333333333332
+    },
+    {
+      "brand": "vitron",
+      "avg_discount": 19.4
+    },
+    {
+      "brand": "haier",
+      "avg_discount": 19.0
+    },
+    {
+      "brand": "vision",
+      "avg_discount": 19.0
+    },
+    {
+      "brand": "roch",
+      "avg_discount": 17.0
+    },
+    {
+      "brand": "maxmo",
+      "avg_discount": 16.333333333333332
+    },
+    {
+      "brand": "rashnik",
+      "avg_discount": 16.0
+    },
+    {
+      "brand": "ecomax",
+      "avg_discount": 14.0
+    }
+  ],
+  "ratingVsPriceData": [
+    {
+      "price": 25850,
+      "rating": 4.3
+    },
+    {
+      "price": 33176,
+      "rating": 4.2
+    },
+    {
+      "price": 30999,
+      "rating": 4.5
+    },
+    {
+      "price": 18750,
+      "rating": 4.4
+    },
+    {
+      "price": 55000,
+      "rating": 4.5
+    },
+    {
+      "price": 17045,
+      "rating": 4.6
+    },
+    {
+      "price": 33807,
+      "rating": 4.0
+    },
+    {
+      "price": 30114,
+      "rating": 4.2
+    },
+    {
+      "price": 27840,
+      "rating": 4.4
+    },
+    {
+      "price": 27273,
+      "rating": 5.0
+    },
+    {
+      "price": 33523,
+      "rating": 4.4
+    },
+    {
+      "price": 30682,
+      "rating": 2.0
+    },
+    {
+      "price": 29545,
+      "rating": 3.5
+    },
+    {
+      "price": 1999,
+      "rating": 4.1
+    },
+    {
+      "price": 21995,
+      "rating": 5.0
+    },
+    {
+      "price": 24899,
+      "rating": 4.2
+    },
+    {
+      "price": 1449,
+      "rating": 3.9
+    },
+    {
+      "price": 17270,
+      "rating": 4.3
+    },
+    {
+      "price": 1445,
+      "rating": 3.9
+    },
+    {
+      "price": 25850,
+      "rating": 4.3
+    },
+    {
+      "price": 8964,
+      "rating": 4.5
+    },
+    {
+      "price": 30999,
+      "rating": 4.5
+    },
+    {
+      "price": 21995,
+      "rating": 5.0
+    },
+    {
+      "price": 17270,
+      "rating": 4.3
+    },
+    {
+      "price": 17005,
+      "rating": 4.5
+    },
+    {
+      "price": 28499,
+      "rating": 4.3
+    },
+    {
+      "price": 33999,
+      "rating": 4.4
+    },
+    {
+      "price": 32399,
+      "rating": 4.6
+    },
+    {
+      "price": 32195,
+      "rating": 4.4
+    },
+    {
+      "price": 18300,
+      "rating": 4.5
+    },
+    {
+      "price": 8964,
+      "rating": 4.5
+    },
+    {
+      "price": 7099,
+      "rating": 4.3
+    },
+    {
+      "price": 6911,
+      "rating": 4.0
+    },
+    {
+      "price": 12349,
+      "rating": 4.7
+    },
+    {
+      "price": 9499,
+      "rating": 4.4
+    },
+    {
+      "price": 9744,
+      "rating": 4.7
+    },
+    {
+      "price": 8495,
+      "rating": 4.4
+    },
+    {
+      "price": 7599,
+      "rating": 5.0
+    },
+    {
+      "price": 9399,
+      "rating": 4.0
+    },
+    {
+      "price": 11800,
+      "rating": 4.6
+    },
+    {
+      "price": 9299,
+      "rating": 4.4
+    },
+    {
+      "price": 8499,
+      "rating": 4.4
+    },
+    {
+      "price": 7999,
+      "rating": 5.0
+    }
+  ],
+  "avgRatingByBrandData": [
+    {
+      "brand": "maxmo",
+      "avg_rating": 4.833333333333333
+    },
+    {
+      "brand": "nunix",
+      "avg_rating": 4.525
+    },
+    {
+      "brand": "smart",
+      "avg_rating": 4.5
+    },
+    {
+      "brand": "vitron",
+      "avg_rating": 4.48
+    },
+    {
+      "brand": "ramtons",
+      "avg_rating": 4.4714285714285715
+    },
+    {
+      "brand": "hisense",
+      "avg_rating": 4.425
+    },
+    {
+      "brand": "haier",
+      "avg_rating": 4.4
+    },
+    {
+      "brand": "mika",
+      "avg_rating": 4.4
+    },
+    {
+      "brand": "midea",
+      "avg_rating": 4.4
+    },
+    {
+      "brand": "von",
+      "avg_rating": 4.357142857142857
+    },
+    {
+      "brand": "em",
+      "avg_rating": 4.0
+    },
+    {
+      "brand": "rashnik",
+      "avg_rating": 3.9
+    },
+    {
+      "brand": "roch",
+      "avg_rating": 3.5
+    },
+    {
+      "brand": "vision",
+      "avg_rating": 3.3
+    }
+  ]
+}
