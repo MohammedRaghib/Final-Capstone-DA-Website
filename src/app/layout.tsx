@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
-import Navbar from '@/components/layout/navbar';
+import Navbar from '@/components/navbar';
 
 export const metadata: Metadata = {
   title: 'Data Insights Viewer',
