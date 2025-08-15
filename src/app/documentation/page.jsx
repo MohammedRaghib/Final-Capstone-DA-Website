@@ -36,6 +36,13 @@ export default function DocumentationPage() {
               </AccordionContent>
             </AccordionItem>
 
+            <AccordionItem value="item-1a">
+              <AccordionTrigger>Problem Statement</AccordionTrigger>
+              <AccordionContent>
+                In today’s competitive e-commerce environment, it is difficult to easily access structured data on how products are priced, discounted, and rated. This makes it challenging for individuals, researchers, and analysts to explore pricing trends, identify promotional patterns, and understand the relationship between price and customer satisfaction. This project addresses that challenge by automating the collection and analysis of e-commerce product data, enabling clear insights into brand pricing strategies, discount levels, and perceived reliability.
+              </AccordionContent>
+            </AccordionItem>
+
             <AccordionItem value="item-2">
               <AccordionTrigger>Questions to Answer</AccordionTrigger>
               <AccordionContent>
@@ -62,6 +69,7 @@ export default function DocumentationPage() {
                 </ol>
               </AccordionContent>
             </AccordionItem>
+
             <AccordionItem value="item-4">
               <AccordionTrigger>Tech Stack</AccordionTrigger>
               <AccordionContent>

@@ -3,16 +3,51 @@ import { BarChart as BarChartIcon } from 'lucide-react';
 import chartData from './chartData.json';
 
 // Analysis strings are hardcoded as they don't change
-const lowestAvgPriceByBrandAnalysis =
-  "The provided chart reveals a tiered market where brands compete on different fronts. The lowest-priced brands like rashnik and mika dominate the entry-level segment by offering affordability, while the mid-range brands such as ramtons and haier are locked in tight competition for the value-conscious customer. At the highest end, premium brands like midea and the outlier ecomax compete on perceived quality and brand status rather than price, with ecomax potentially targeting a luxury niche.";
-const overallAvgDiscountAnalysis =
-  "The Overall Average Discount Percentage pie chart shows that, on average, products in the dataset are discounted by 27.1%. This means that roughly a quarter of the total product value is being discounted at the time of the scrape. The large Remaining Value slice of 72.9% simply represents the portion of the price that is not being discounted, providing context for the discounts magnitude. This analysis confirms that discounts are a significant factor across the marketplace, but the majority of the product value remains undiscounted.";
-const highestAvgDiscountByBrandAnalysis =
-  "Based on the 'Average Discount Percentage by Brand' chart, there is a clear inverse relationship between a brand's average price and its average discount. Brands in the entry-level price tier, like aillyons, em, and von, offer the highest average discounts, all over 40%, indicating a strategy focused on attracting customers with aggressive promotions. Conversely, the more expensive brands like rashnik and ecomax, which were at the higher end of the price chart, offer the lowest average discounts, at around 15%. This suggests that these premium brands rely on their brand value rather than price promotions to drive sales.";
-const ratingVsPriceAnalysis =
-  "The scatter plot shows no strong correlation between product rating and price. Most products, regardless of their cost, are highly rated between 4.0 and 5.0 stars. This suggests that price isn't a primary indicator of customer satisfaction on this marketplace. There are a few outliers, including a product with a low rating at a high price, indicating a potential mismatch between a product's cost and its perceived value.";
-const avgRatingByBrandAnalysis =
-  "Based on the 'Average Rating by Brand' chart, there is a very high level of customer satisfaction across most of the brands. The majority of brands, including the highest-rated brand maxmo, fall within a tight average rating band of 4.3 to 4.8 stars. This suggests that the marketplace is populated with reliable products, and that the differences in average ratings are minor. The brands with lower average ratings, such as roch, vision, and aillyons, may have a small number of poorly rated products, which slightly pulls down their overall average, but they are still generally well-regarded with ratings above 3.0.";
+const lowestAvgPriceByBrandAnalysis = [
+  "The chart shows a tiered market where brands compete in different price segments.",
+  "Entry-level brands (e.g., rashnik, mika) dominate by offering affordability.",
+  "Mid-range brands (e.g., ramtons, haier) target value-conscious customers and compete closely.",
+  "Premium brands (e.g., midea, ecomax) compete on perceived quality and brand prestige rather than price.",
+  "Ecomax appears to target a luxury niche."
+];
+
+const overallAvgDiscountAnalysis = [
+  "Products in the dataset have an average discount of 27.1%.",
+  "This means roughly a quarter of the total product value is discounted at the time of the scrape.",
+  "The remaining 72.9% represents the portion of the price that is not discounted.",
+  "Discounts are a significant factor in the marketplace, but most of the product value remains undiscounted."
+];
+
+const highestAvgDiscountByBrandAnalysis = [
+  "There is a clear inverse relationship between average price and average discount.",
+  "Entry-level brands (e.g., aillyons, em, von) offer high average discounts of over 40%, focusing on aggressive promotions.",
+  "Premium brands (e.g., rashnik, ecomax) offer low average discounts of about 15%, relying on brand value rather than promotions."
+];
+
+const ratingVsPriceAnalysis = [
+  "The scatter plot shows no strong correlation between product rating and price.",
+  "Most products, regardless of price, are rated between 4.0 and 5.0 stars.",
+  "Some outliers exist, including a high-priced product with a low rating, indicating possible mismatch between cost and perceived value."
+];
+
+const avgRatingByBrandAnalysis = [
+  "Most brands have very high customer satisfaction, with average ratings between 4.3 and 4.8 stars.",
+  "The highest-rated brand is maxmo.",
+  "Lower-rated brands (e.g., roch, vision, aillyons) may have a few poorly rated products pulling their average down.",
+  "Even the lowest-rated brands still have ratings above 3.0, indicating generally good marketplace quality."
+];
+
+const recommendations = {
+  lowestAvgPriceByBrand: `Rashnik leads with the lowest average product price at 1,445. This suggests they are strongly positioned in the budget segment. Brands like Ecomax and Midea, with much higher averages, may want to explore entry-level offerings to compete in lower price brackets.`,
+
+  overallAvgDiscount: `The marketplace-wide average discount is 27.1%. This indicates a moderate reliance on discounts to drive sales. Sellers should align promotional strategies around this benchmark, offering slightly higher-than-average discounts during campaigns to stand out.`,
+
+  highestAvgDiscountByBrand: `Ailyons leads with a striking 46% average discount, indicating a heavy promotional pricing strategy. Brands with lower averages, like Ecomax (14%), might not be leveraging discounting as aggressively—potentially missing out on deal-driven customers.`,
+
+  ratingVsPrice: `The price-to-rating scatter plot shows no strong linear relationship—high ratings appear across both low- and high-priced products. This means quality perception is not strictly tied to price, so budget-friendly brands can still compete on reputation if they maintain high customer satisfaction.`,
+
+  avgRatingByBrand: `Maxmo tops the list with an impressive 4.83 average rating, showing strong customer trust. Brands below 4.0, like Rashnik (3.9) and Roch (3.5), should focus on improving product quality and post-sale service to boost ratings and market credibility.`
+};
 
 // Chart configurations
 const lowestAvgPriceByBrandConfig = {
@@ -51,6 +86,9 @@ export default function DashboardPage() {
           dataKeys={['avg_price']}
           indexKey="brand"
           analysis={lowestAvgPriceByBrandAnalysis}
+          recommendations={recommendations.lowestAvgPriceByBrand}
+          xAxisLabel="Brand"
+          yAxisLabel="Average Price"
         />
         <ChartCard
           title="Overall Average Discount Percentage"
@@ -60,6 +98,8 @@ export default function DashboardPage() {
           dataKeys={['value']}
           indexKey="label"
           analysis={overallAvgDiscountAnalysis}
+          recommendations={recommendations.overallAvgDiscount}
+          customNames={["Average Discount", "Remaining Value"]}
         />
         <ChartCard
           title="Highest Average Discount by Brand"
@@ -70,6 +110,9 @@ export default function DashboardPage() {
           dataKeys={['avg_discount']}
           indexKey="brand"
           analysis={highestAvgDiscountByBrandAnalysis}
+          recommendations={recommendations.highestAvgDiscountByBrand}
+          xAxisLabel="Brand"
+          yAxisLabel="Average Discount (%)"
         />
         <ChartCard
           title="Product Rating vs Price"
@@ -80,6 +123,9 @@ export default function DashboardPage() {
           dataKeys={['price', 'rating']}
           indexKey="price"
           analysis={ratingVsPriceAnalysis}
+          recommendations={recommendations.ratingVsPrice}
+          xAxisLabel="Price"
+          yAxisLabel="Rating"
         />
         <ChartCard
           title="Average Rating by Brand"
@@ -90,6 +136,9 @@ export default function DashboardPage() {
           dataKeys={['avg_rating']}
           indexKey="brand"
           analysis={avgRatingByBrandAnalysis}
+          recommendations={recommendations.avgRatingByBrand}
+          xAxisLabel="Brand"
+          yAxisLabel="Average Rating"
         />
       </div>
     </div>

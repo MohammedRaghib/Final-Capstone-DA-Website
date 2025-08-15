@@ -19,7 +19,7 @@ import {
   Sector,
   ZAxis,
 } from 'recharts';
-import { Lightbulb, X } from 'lucide-react';
+import { Lightbulb, Target, X, ArrowLeftRight } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -44,11 +44,28 @@ export default function ChartCard({
   chartConfig,
   dataKeys,
   indexKey,
+  xAxisLabel = '',
+  yAxisLabel = '',
   analysis = '',
+  recommendations = '',
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [showAnalysis, setShowAnalysis] = useState(false);
   const [insights, setInsights] = useState([]);
+  const [showRecommendations, setShowRecommendations] = useState(false);
+  const [recommendationList, setRecommendationList] = useState([]);
+  const [panelPosition, setPanelPosition] = useState('right'); // 'right' or 'left'
+
+  const colors = [
+    '#8884d8',
+    '#82ca9d',
+    '#ffc658',
+    '#ff8042',
+    '#8dd1e1',
+    '#d0ed57',
+    '#a4de6c',
+    '#d88884',
+  ];
 
   const onPieEnter = (_, index) => {
     setActiveIndex(index);
@@ -57,7 +74,6 @@ export default function ChartCard({
   const fetchAnalysis = (e) => {
     e.preventDefault();
     setShowAnalysis(true);
-
     if (Array.isArray(analysis)) {
       setInsights(analysis);
     } else if (typeof analysis === 'string' && analysis.trim() !== '') {
@@ -65,6 +81,22 @@ export default function ChartCard({
     } else {
       setInsights([]);
     }
+  };
+
+  const fetchRecommendations = (e) => {
+    e.preventDefault();
+    setShowRecommendations(true);
+    if (Array.isArray(recommendations)) {
+      setRecommendationList(recommendations);
+    } else if (typeof recommendations === 'string' && recommendations.trim() !== '') {
+      setRecommendationList([recommendations]);
+    } else {
+      setRecommendationList([]);
+    }
+  };
+
+  const togglePanelPosition = () => {
+    setPanelPosition((prev) => (prev === 'right' ? 'left' : 'right'));
   };
 
   const renderActiveShape = (props) => {
@@ -89,10 +121,10 @@ export default function ChartCard({
         return (
           <RechartsLineChart data={chartData}>
             <CartesianGrid vertical={false} />
-            <XAxis dataKey={indexKey} tickLine={false} axisLine={false} tickMargin={8} />
-            <YAxis tickLine={false} axisLine={false} />
+            <XAxis dataKey={indexKey} tickLine={false} axisLine={false} tickMargin={8} label={{ value: xAxisLabel, position: 'insideBottom', offset: -5 }} />
+            <YAxis tickLine={false} axisLine={false} label={{ value: yAxisLabel, angle: -90, position: 'insideLeft' }} />
             <Tooltip cursor={false} content={<ChartTooltipContent indicator="line" />} />
-            <Legend content={<ChartLegendContent />} />
+            {/* <Legend content={<ChartLegendContent />} /> */}
             {dataKeys.map((key) => (
               <Line key={key} type="monotone" dataKey={key} stroke={`var(--color-${key})`} strokeWidth={2} dot={false} />
             ))}
@@ -102,10 +134,10 @@ export default function ChartCard({
         return (
           <BarChart data={chartData}>
             <CartesianGrid vertical={false} />
-            <XAxis dataKey={indexKey} tickLine={false} axisLine={false} tickMargin={8} />
-            <YAxis tickLine={false} axisLine={false} />
+            <XAxis dataKey={indexKey} tickLine={false} axisLine={false} tickMargin={8} label={{ value: xAxisLabel, position: 'insideBottom', offset: -5 }} />
+            <YAxis tickLine={false} axisLine={false} label={{ value: yAxisLabel, angle: -90, position: 'insideLeft' }} />
             <Tooltip cursor={false} content={<ChartTooltipContent indicator="dot" />} />
-            <Legend content={<ChartLegendContent />} />
+            {/* <Legend content={<ChartLegendContent />} /> */}
             {dataKeys.map((key) => (
               <Bar key={key} dataKey={key} fill={`var(--color-${key})`} radius={4} />
             ))}
@@ -114,10 +146,10 @@ export default function ChartCard({
       case 'stacked-bar':
         return (
           <BarChart data={chartData} layout="vertical" stackOffset="expand">
-            <XAxis type="number" hide />
-            <YAxis type="category" dataKey={indexKey} tickLine={false} axisLine={false} tickMargin={8} width={80} />
+            <XAxis type="number" hide label={{ value: xAxisLabel, position: 'insideBottom', offset: -5 }} />
+            <YAxis type="category" dataKey={indexKey} tickLine={false} axisLine={false} tickMargin={8} width={80} label={{ value: yAxisLabel, angle: -90, position: 'insideLeft' }} />
             <Tooltip cursor={false} content={<ChartTooltipContent indicator="dot" />} />
-            <Legend content={<ChartLegendContent />} />
+            {/* <Legend content={<ChartLegendContent />} /> */}
             {dataKeys.map((key) => (
               <Bar key={key} dataKey={key} fill={`var(--color-${key})`} stackId="a" radius={2} />
             ))}
@@ -139,23 +171,24 @@ export default function ChartCard({
               activeIndex={activeIndex}
               activeShape={renderActiveShape}
               onMouseEnter={onPieEnter}
+            // label={(entry) => `${entry.name} (${entry.value})`}
             >
               {chartData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.fill} />
+                <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
               ))}
             </Pie>
-            <Legend content={<ChartLegendContent nameKey="name" />} />
+            {/* <Legend content={<ChartLegendContent nameKey="name" />} /> */}
           </RechartsPieChart>
         );
       case 'scatter':
         return (
           <ScatterChart>
             <CartesianGrid />
-            <XAxis dataKey={dataKeys[0]} name="X Axis" />
-            <YAxis dataKey={dataKeys[1]} name="Y Axis" />
+            <XAxis dataKey={dataKeys[0]} label={{ value: xAxisLabel, position: 'insideBottom', offset: -5 }} name={xAxisLabel || 'Price'} />
+            <YAxis dataKey={dataKeys[1]} label={{ value: yAxisLabel, angle: -90, position: 'insideLeft' }} name={yAxisLabel || 'Brand'} />
             <ZAxis range={[60, 400]} />
             <Tooltip cursor={{ strokeDasharray: '3 3' }} content={<ChartTooltipContent />} />
-            <Legend />
+            {/* <Legend /> */}
             <Scatter name="Scatter Data" data={chartData} fill={`var(--color-${dataKeys[1]})`} />
           </ScatterChart>
         );
@@ -163,6 +196,33 @@ export default function ChartCard({
         return null;
     }
   };
+
+  const Panel = ({ title, icon: Icon, list, onClose }) => (
+    <div className={`fixed bottom-4 ${panelPosition}-4 bg-white shadow-lg rounded-lg p-4 w-80 border z-50 transition-all`}>
+      <div className="flex justify-between items-center mb-2">
+        <h4 className="font-semibold flex items-center gap-2">
+          <Icon className="w-4 h-4 text-primary" /> {title}
+        </h4>
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" size="icon" onClick={togglePanelPosition}>
+            <ArrowLeftRight className="w-4 h-4" />
+          </Button>
+          <button onClick={onClose}>
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+      {list.length > 0 ? (
+        <ul className="list-disc list-inside space-y-1 text-muted-foreground text-sm">
+          {list.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      ) : (
+        <p className="text-muted-foreground text-sm">No data available.</p>
+      )}
+    </div>
+  );
 
   return (
     <Card className="flex flex-col">
@@ -175,32 +235,30 @@ export default function ChartCard({
           {renderChart()}
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex justify-start">
-        <Button variant="outline" type='button' onClick={(e) => fetchAnalysis(e)}>
+      <CardFooter className="flex gap-2">
+        <Button variant="outline" type='button' onClick={fetchAnalysis}>
           Show Analysis
+        </Button>
+        <Button variant="outline" type='button' onClick={fetchRecommendations}>
+          Show Recommendations
         </Button>
       </CardFooter>
 
       {showAnalysis && (
-        <div className="fixed bottom-4 left-4 bg-white shadow-lg rounded-lg p-4 w-80 border z-50">
-          <div className="flex justify-between items-center mb-2">
-            <h4 className="font-semibold flex items-center gap-2">
-              <Lightbulb className="w-4 h-4 text-primary" /> Analysis
-            </h4>
-            <button onClick={() => setShowAnalysis(false)}>
-              <X className="w-4 h-4" />
-            </button>
-          </div>
-          {insights.length > 0 ? (
-            <ul className="list-disc list-inside space-y-1 text-muted-foreground text-sm">
-              {insights.map((insight, index) => (
-                <li key={index}>{insight}</li>
-              ))}
-            </ul>
-          ) : (
-            <p className="text-muted-foreground text-sm">No insights available.</p>
-          )}
-        </div>
+        <Panel
+          title="Analysis"
+          icon={Lightbulb}
+          list={insights}
+          onClose={() => setShowAnalysis(false)}
+        />
+      )}
+      {showRecommendations && (
+        <Panel
+          title="Recommendations"
+          icon={Target}
+          list={recommendationList}
+          onClose={() => setShowRecommendations(false)}
+        />
       )}
     </Card>
   );
