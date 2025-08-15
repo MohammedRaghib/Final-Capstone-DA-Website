@@ -198,7 +198,7 @@ export default function ChartCard({
   };
 
   const Panel = ({ title, icon: Icon, list, onClose }) => (
-    <div className={`fixed bottom-4 ${panelPosition}-4 bg-white shadow-lg rounded-lg p-4 w-80 border z-50 transition-all`}>
+    <div className={`fixed bottom-4 p-4 w-80 bg-white shadow-lg rounded-lg border z-50 transition-all ${panelPosition === 'right' ? 'right-0' : 'left-0'}`}>
       <div className="flex justify-between items-center mb-2">
         <h4 className="font-semibold flex items-center gap-2">
           <Icon className="w-4 h-4 text-primary" /> {title}
